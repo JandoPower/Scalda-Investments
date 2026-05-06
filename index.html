@@ -453,9 +453,67 @@
       font-weight: 700;
       color: var(--navy);
       margin-bottom: 4px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Lato', sans-serif;
     }
-    .prop-city { font-size: 13px; color: var(--text-light); }
+    .prop-city { font-size: 13px; color: var(--text-light); font-family: 'Lato', sans-serif; }
+
+    /* ── PROP STATS ── */
+    .prop-stats {
+      display: flex;
+      gap: 14px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .prop-stat {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-mid);
+      font-family: 'Lato', sans-serif;
+    }
+    .prop-stat svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* ── PROP SUBTABS ── */
+    .prop-subtabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--border);
+    }
+    .prop-subtab {
+      padding: 9px 22px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'Lato', sans-serif;
+      transition: color 0.2s;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+    }
+    .prop-subtab.active { color: var(--navy); border-bottom-color: var(--orange); }
+    .prop-subpanel { display: none; }
+    .prop-subpanel.active { display: block; }
+    .prop-coming-soon {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+      font-size: 15px;
+      font-style: italic;
+    }
 
     /* ── WHY US ── */
     .why { background: var(--navy); }
@@ -698,6 +756,24 @@
 </head>
 <body>
 
+  <!-- ── SVG ICON DEFS ── -->
+  <svg style="display:none" aria-hidden="true">
+    <defs>
+      <symbol id="icon-bed" viewBox="0 0 24 24">
+        <path d="M20 9.5V4h-2v2.5H6V4H4v5.5C2.86 10.17 2 11.49 2 13v4h2v2h2v-2h12v2h2v-2h2v-4c0-1.51-.86-2.83-2-3.5zM16 8h2v2h-2V8zm-6 0h4v2h-4V8zM6 8h2v2H6V8zM20 15H4v-2c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v2z"/>
+      </symbol>
+      <symbol id="icon-bath" viewBox="0 0 24 24">
+        <path d="M21 10H7V7c0-1.1.9-2 2-2s2 .9 2 2h2c0-2.21-1.79-4-4-4S5 4.79 5 7v3H3c-.55 0-1 .45-1 1v2c0 2.79 1.91 5.12 4.5 5.78V21h2v-2h7v2h2v-2.22C20.09 18.12 22 15.79 22 13v-2c0-.55-.45-1-1-1zm-1 3c0 2.21-1.79 4-4 4H8c-2.21 0-4-1.79-4-4v-1h16v1z"/>
+      </symbol>
+      <symbol id="icon-people" viewBox="0 0 24 24">
+        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+      </symbol>
+      <symbol id="icon-parking" viewBox="0 0 24 24">
+        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <!-- ── TOP BAR ── -->
   <div class="topbar">
     <a href="https://www.facebook.com/p/Scalda-Investments-LLC-100092336262180/" target="_blank">
@@ -846,8 +922,12 @@
       <div class="prop-tabs">
         <button class="prop-tab active" data-tab="indy" data-lang="en">Indianapolis, IN</button>
         <button class="prop-tab active" data-tab="indy" data-lang="es" style="display:none">Indianápolis, IN</button>
-        <button class="prop-tab" data-tab="overseas" data-lang="en">Honduras</button>
-        <button class="prop-tab" data-tab="overseas" data-lang="es" style="display:none">Honduras</button>
+        <button class="prop-tab" data-tab="omoa" data-lang="en">Omoa, Honduras</button>
+        <button class="prop-tab" data-tab="omoa" data-lang="es" style="display:none">Omoa, Honduras</button>
+        <button class="prop-tab" data-tab="tegucigalpa" data-lang="en">Tegucigalpa, Honduras</button>
+        <button class="prop-tab" data-tab="tegucigalpa" data-lang="es" style="display:none">Tegucigalpa, Honduras</button>
+        <button class="prop-tab" data-tab="san-pedro" data-lang="en">San Pedro Sula, Honduras</button>
+        <button class="prop-tab" data-tab="san-pedro" data-lang="es" style="display:none">San Pedro Sula, Honduras</button>
       </div>
 
       <!-- Indianapolis Panel -->
@@ -861,6 +941,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">755 Lynn St</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>2 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+              </div>
             </div>
           </div>
 
@@ -871,6 +957,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">931 Lynn St</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>2 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+              </div>
             </div>
           </div>
 
@@ -881,6 +973,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">3664 Yellow Poplar Ct</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>5 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>3 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>9</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>5</span></div>
+              </div>
             </div>
           </div>
 
@@ -891,6 +989,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">3502 White Cedar Ct</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>3 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>5</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+              </div>
             </div>
           </div>
 
@@ -901,6 +1005,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">1142 W 28th St</div>
               <div class="prop-city">Indianapolis, IN 46208</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>2 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+              </div>
             </div>
           </div>
 
@@ -911,6 +1021,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">15 S Gray St</div>
               <div class="prop-city">Indianapolis, IN 46201</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>2 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+              </div>
             </div>
           </div>
 
@@ -921,6 +1037,12 @@
               <span class="prop-tag" data-lang="es">Dúplex</span>
               <div class="prop-addr">1470–1472 Lee St</div>
               <div class="prop-city">Indianapolis, IN 46221</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>2 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+              </div>
             </div>
           </div>
 
@@ -931,6 +1053,12 @@
               <span class="prop-tag" data-lang="es">Dúplex</span>
               <div class="prop-addr">1302–1304 Medford Ave</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>2 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+              </div>
             </div>
           </div>
 
@@ -941,6 +1069,12 @@
               <span class="prop-tag" data-lang="es">Dúplex</span>
               <div class="prop-addr">1923–1925 W Ohio St</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>3 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>5</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+              </div>
             </div>
           </div>
 
@@ -951,6 +1085,12 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">3647 Hillside Ave</div>
               <div class="prop-city">Indianapolis, IN 46218</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>5 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>8</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+              </div>
             </div>
           </div>
 
@@ -961,58 +1101,73 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">4050 W Vermont St</div>
               <div class="prop-city">Indianapolis, IN 46222</div>
-            </div>
-          </div>
-
-          <div class="prop-card">
-            <img class="prop-img" src="730N_Arnold.jpeg" alt="730 N Arnold Ave"/>
-            <div class="prop-info">
-              <span class="prop-tag" data-lang="en">Single Family</span>
-              <span class="prop-tag" data-lang="es">Unifamiliar</span>
-              <div class="prop-addr">730 N Arnold Ave</div>
-              <div class="prop-city">Indianapolis, IN</div>
-            </div>
-          </div>
-
-          <div class="prop-card">
-            <img class="prop-img" src="2526_Adams.jpeg" alt="2526 Adams St"/>
-            <div class="prop-info">
-              <span class="prop-tag" data-lang="en">Single Family</span>
-              <span class="prop-tag" data-lang="es">Unifamiliar</span>
-              <div class="prop-addr">2526 Adams St</div>
-              <div class="prop-city">Indianapolis, IN</div>
+              <div class="prop-stats">
+                <div class="prop-stat"><svg><use href="#icon-bed"/></svg><span>4 BD</span></div>
+                <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
+                <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>8</span></div>
+                <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+              </div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Honduras Panel -->
-      <div class="prop-panel" id="panel-overseas">
-        <div class="prop-grid">
-
-          <div class="prop-card">
-            <img class="prop-img" src="Omoa_big.jpeg" alt="Honduras Property — Ground View"/>
-            <div class="prop-info">
-              <span class="prop-tag overseas" data-lang="en">Overseas · Honduras</span>
-              <span class="prop-tag overseas" data-lang="es">Extranjero · Honduras</span>
-              <div class="prop-addr" data-lang="en">Investment Property</div>
-              <div class="prop-addr" data-lang="es">Propiedad de Inversión</div>
-              <div class="prop-city">Omoa, Honduras</div>
+      <!-- Omoa, Honduras Panel -->
+      <div class="prop-panel" id="panel-omoa">
+        <div class="prop-subtabs">
+          <button class="prop-subtab active" data-subtab="luna-mare">Luna Mare</button>
+        </div>
+        <div class="prop-subpanel active" id="subpanel-luna-mare">
+          <div class="prop-grid">
+            <div class="prop-card">
+              <img class="prop-img" src="Omoa_big.jpeg" alt="Luna Mare — Ground View"/>
+              <div class="prop-info">
+                <span class="prop-tag overseas" data-lang="en">Omoa · Honduras</span>
+                <span class="prop-tag overseas" data-lang="es">Omoa · Honduras</span>
+                <div class="prop-addr" data-lang="en">Luna Mare</div>
+                <div class="prop-addr" data-lang="es">Luna Mare</div>
+                <div class="prop-city">Omoa, Honduras</div>
+              </div>
+            </div>
+            <div class="prop-card">
+              <img class="prop-img" src="Omoa_little.jpeg" alt="Luna Mare — Aerial View"/>
+              <div class="prop-info">
+                <span class="prop-tag overseas" data-lang="en">Omoa · Honduras</span>
+                <span class="prop-tag overseas" data-lang="es">Omoa · Honduras</span>
+                <div class="prop-addr" data-lang="en">Luna Mare — Aerial View</div>
+                <div class="prop-addr" data-lang="es">Luna Mare — Vista Aérea</div>
+                <div class="prop-city">Omoa, Honduras</div>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="prop-card">
-            <img class="prop-img" src="Omoa_little.jpeg" alt="Honduras Property — Aerial View"/>
-            <div class="prop-info">
-              <span class="prop-tag overseas" data-lang="en">Overseas · Honduras</span>
-              <span class="prop-tag overseas" data-lang="es">Extranjero · Honduras</span>
-              <div class="prop-addr" data-lang="en">Aerial View</div>
-              <div class="prop-addr" data-lang="es">Vista Aérea</div>
-              <div class="prop-city">Omoa, Honduras</div>
-            </div>
-          </div>
+      <!-- Tegucigalpa, Honduras Panel -->
+      <div class="prop-panel" id="panel-tegucigalpa">
+        <div class="prop-subtabs">
+          <button class="prop-subtab active" data-subtab="distrito-verde">Distrito Verde</button>
+          <button class="prop-subtab" data-subtab="eco-vivienda">Eco Vivienda</button>
+        </div>
+        <div class="prop-subpanel active" id="subpanel-distrito-verde">
+          <p class="prop-coming-soon" data-lang="en">Properties coming soon — contact us to learn more.</p>
+          <p class="prop-coming-soon" data-lang="es">Propiedades próximamente — contáctenos para más información.</p>
+        </div>
+        <div class="prop-subpanel" id="subpanel-eco-vivienda">
+          <p class="prop-coming-soon" data-lang="en">Properties coming soon — contact us to learn more.</p>
+          <p class="prop-coming-soon" data-lang="es">Propiedades próximamente — contáctenos para más información.</p>
+        </div>
+      </div>
 
+      <!-- San Pedro Sula, Honduras Panel -->
+      <div class="prop-panel" id="panel-san-pedro">
+        <div class="prop-subtabs">
+          <button class="prop-subtab active" data-subtab="torre-sky">Torre Sky</button>
+        </div>
+        <div class="prop-subpanel active" id="subpanel-torre-sky">
+          <p class="prop-coming-soon" data-lang="en">Properties coming soon — contact us to learn more.</p>
+          <p class="prop-coming-soon" data-lang="es">Propiedades próximamente — contáctenos para más información.</p>
         </div>
       </div>
     </div>
@@ -1122,23 +1277,23 @@
             <div class="form-group">
               <label data-lang="en">First Name</label>
               <label data-lang="es">Nombre</label>
-              <input id="f-fname" type="text" placeholder="John"/>
+              <input type="text" placeholder="John"/>
             </div>
             <div class="form-group">
               <label data-lang="en">Last Name</label>
               <label data-lang="es">Apellido</label>
-              <input id="f-lname" type="text" placeholder="Doe"/>
+              <input type="text" placeholder="Doe"/>
             </div>
           </div>
           <div class="form-group">
             <label data-lang="en">Email</label>
             <label data-lang="es">Correo Electrónico</label>
-            <input id="f-email" type="email" placeholder="john@email.com"/>
+            <input type="email" placeholder="john@email.com"/>
           </div>
           <div class="form-group">
             <label data-lang="en">I'm interested in...</label>
             <label data-lang="es">Me interesa...</label>
-            <select id="f-service">
+            <select>
               <option>Investing / Partnership</option>
               <option>Buying a Property</option>
               <option>Learning More</option>
@@ -1147,10 +1302,10 @@
           <div class="form-group">
             <label data-lang="en">Message</label>
             <label data-lang="es">Mensaje</label>
-            <textarea id="f-details" placeholder="Tell us about your goals..."></textarea>
+            <textarea placeholder="Tell us about your goals..."></textarea>
           </div>
-          <div id="form-status" style="margin-bottom:12px; font-size:14px; font-weight:700; display:none; padding:10px 14px; border-radius:4px;"></div>
-          <button id="submit-btn" class="btn-form">Send Message</button>
+          <button class="btn-form" data-lang="en">Send Message</button>
+          <button class="btn-form" data-lang="es">Enviar Mensaje</button>
         </div>
       </div>
     </div>
@@ -1245,10 +1400,6 @@
         b.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'block' : 'none';
       });
 
-      // Update single submit button text
-      const submitBtn = document.getElementById('submit-btn');
-      if (submitBtn) submitBtn.textContent = isSpanish ? 'Enviar Mensaje' : 'Send Message';
-
       document.querySelectorAll('[data-lang]').forEach(el => {
         if (
           el.classList.contains('prop-tab') ||
@@ -1295,81 +1446,19 @@
       });
     });
 
-    document.querySelectorAll('[data-lang="es"]').forEach(el => {
-      el.style.display = 'none';
+    document.querySelectorAll('.prop-subtab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const subtab = btn.getAttribute('data-subtab');
+        const panel = btn.closest('.prop-panel');
+        panel.querySelectorAll('.prop-subtab').forEach(b => b.classList.remove('active'));
+        panel.querySelectorAll('.prop-subpanel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(`subpanel-${subtab}`).classList.add('active');
+      });
     });
 
-    // ── FORM → Web3Forms ──────────────────────────────────────────────────────
-    const WEB3FORMS_KEY = 'db8abf62-91d5-48b4-aab0-03941b99511d';
-    document.getElementById('submit-btn').addEventListener('click', async function () {
-      const btn      = this;
-      const statusEl = document.getElementById('form-status');
-      const fname    = document.getElementById('f-fname').value.trim();
-      const lname    = document.getElementById('f-lname').value.trim();
-      const email    = document.getElementById('f-email').value.trim();
-      const service  = document.getElementById('f-service').value;
-      const details  = document.getElementById('f-details').value.trim();
-
-      if (!fname || !lname || !email || !details) {
-        statusEl.style.display = 'block';
-        statusEl.style.background = '#fff0f0';
-        statusEl.style.color = '#c0392b';
-        statusEl.style.border = '1px solid #f5c6c6';
-        statusEl.textContent = isSpanish
-          ? '⚠ Por favor complete los campos obligatorios (nombre, apellido, correo y mensaje).'
-          : '⚠ Please fill in the required fields (first name, last name, email, and message).';
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = isSpanish ? 'Enviando...' : 'Sending...';
-      statusEl.style.display = 'none';
-      statusEl.textContent = '';
-
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_KEY,
-            subject: 'New Interest Form from ' + fname + ' ' + lname,
-            from_name: 'Scalda Investments LLC Website',
-            name: fname + ' ' + lname,
-            email: email,
-            service: service || '(not selected)',
-            message: details,
-            botcheck: ''
-          })
-        });
-        const data = await res.json();
-        if (data.success) {
-          statusEl.style.display = 'block';
-          statusEl.style.background = '#f0fff4';
-          statusEl.style.color = '#27ae60';
-          statusEl.style.border = '1px solid #b2dfdb';
-          statusEl.textContent = isSpanish
-            ? '✓ ¡Mensaje enviado! Le contactaremos pronto.'
-            : '✓ Message sent! We\'ll be in touch soon.';
-          ['f-fname','f-lname','f-email','f-details'].forEach(id => {
-            document.getElementById(id).value = '';
-          });
-          document.getElementById('f-service').selectedIndex = 0;
-        } else {
-          throw new Error(data.message || 'Submission failed');
-        }
-      } catch (err) {
-        console.error(err);
-        statusEl.style.display = 'block';
-        statusEl.style.background = '#fff0f0';
-        statusEl.style.color = '#c0392b';
-        statusEl.style.border = '1px solid #f5c6c6';
-        statusEl.textContent = isSpanish
-          ? '⚠ Error al enviar. Por favor llámenos al +1 574-386-8817.'
-          : '⚠ Send failed. Please call us at +1 574-386-8817.';
-      } finally {
-        btn.disabled = false;
-        btn.textContent = isSpanish ? 'Enviar Mensaje' : 'Send Message';
-      }
+    document.querySelectorAll('[data-lang="es"]').forEach(el => {
+      el.style.display = 'none';
     });
   </script>
 
