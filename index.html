@@ -964,26 +964,6 @@
             </div>
           </div>
 
-          <div class="prop-card">
-            <img class="prop-img" src="730N_Arnold.jpeg" alt="730 N Arnolda Ave"/>
-            <div class="prop-info">
-              <span class="prop-tag" data-lang="en">Single Family</span>
-              <span class="prop-tag" data-lang="es">Unifamiliar</span>
-              <div class="prop-addr">730 N Arnolda Ave</div>
-              <div class="prop-city">Indianapolis, IN</div>
-            </div>
-          </div>
-
-          <div class="prop-card">
-            <img class="prop-img" src="2526_Adams.jpeg" alt="2526 Adams St"/>
-            <div class="prop-info">
-              <span class="prop-tag" data-lang="en">Single Family</span>
-              <span class="prop-tag" data-lang="es">Unifamiliar</span>
-              <div class="prop-addr">2526 Adams St</div>
-              <div class="prop-city">Indianapolis, IN</div>
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -1122,23 +1102,23 @@
             <div class="form-group">
               <label data-lang="en">First Name</label>
               <label data-lang="es">Nombre</label>
-              <input type="text" placeholder="John"/>
+              <input id="f-fname" type="text" placeholder="John"/>
             </div>
             <div class="form-group">
               <label data-lang="en">Last Name</label>
               <label data-lang="es">Apellido</label>
-              <input type="text" placeholder="Doe"/>
+              <input id="f-lname" type="text" placeholder="Doe"/>
             </div>
           </div>
           <div class="form-group">
             <label data-lang="en">Email</label>
             <label data-lang="es">Correo Electrónico</label>
-            <input type="email" placeholder="john@email.com"/>
+            <input id="f-email" type="email" placeholder="john@email.com"/>
           </div>
           <div class="form-group">
             <label data-lang="en">I'm interested in...</label>
             <label data-lang="es">Me interesa...</label>
-            <select>
+            <select id="f-service">
               <option>Investing / Partnership</option>
               <option>Buying a Property</option>
               <option>Learning More</option>
@@ -1147,10 +1127,10 @@
           <div class="form-group">
             <label data-lang="en">Message</label>
             <label data-lang="es">Mensaje</label>
-            <textarea placeholder="Tell us about your goals..."></textarea>
+            <textarea id="f-details" placeholder="Tell us about your goals..."></textarea>
           </div>
-          <button class="btn-form" data-lang="en">Send Message</button>
-          <button class="btn-form" data-lang="es">Enviar Mensaje</button>
+          <div id="form-status" style="margin-bottom:12px; font-size:14px; font-weight:700; display:none; padding:10px 14px; border-radius:4px;"></div>
+          <button id="submit-btn" class="btn-form">Send Message</button>
         </div>
       </div>
     </div>
@@ -1245,6 +1225,10 @@
         b.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'block' : 'none';
       });
 
+      // Update single submit button text
+      const submitBtn = document.getElementById('submit-btn');
+      if (submitBtn) submitBtn.textContent = isSpanish ? 'Enviar Mensaje' : 'Send Message';
+
       document.querySelectorAll('[data-lang]').forEach(el => {
         if (
           el.classList.contains('prop-tab') ||
@@ -1295,70 +1279,78 @@
       el.style.display = 'none';
     });
 
-     // ── FORM → Web3Forms (no PHP needed) ──────────────────────────────────────
-  const WEB3FORMS_KEY = 'db8abf62-91d5-48b4-aab0-03941b99511d';
+    // ── FORM → Web3Forms ──────────────────────────────────────────────────────
+    const WEB3FORMS_KEY = 'db8abf62-91d5-48b4-aab0-03941b99511d';
+    document.getElementById('submit-btn').addEventListener('click', async function () {
+      const btn      = this;
+      const statusEl = document.getElementById('form-status');
+      const fname    = document.getElementById('f-fname').value.trim();
+      const lname    = document.getElementById('f-lname').value.trim();
+      const email    = document.getElementById('f-email').value.trim();
+      const service  = document.getElementById('f-service').value;
+      const details  = document.getElementById('f-details').value.trim();
 
-  document.getElementById('submit-btn').addEventListener('click', async function () {
-    const btn = this;
-    const statusEl = document.getElementById('form-status');
-    const fname   = document.getElementById('f-fname').value.trim();
-    const lname   = document.getElementById('f-lname').value.trim();
-    const email   = document.getElementById('f-email').value.trim();
-    const phone   = document.getElementById('f-phone').value.trim();
-    const service = document.getElementById('f-service').value;
-    const details = document.getElementById('f-details').value.trim();
-
-    if (!fname || !lname || !email || !details) {
-      statusEl.className = 'form-status error';
-      statusEl.textContent = currentLang === 'es'
-        ? '⚠ Por favor complete los campos obligatorios (nombre, apellido, correo y detalles).'
-        : '⚠ Please fill in the required fields (name, email, and project details).';
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
-    statusEl.className = 'form-status';
-    statusEl.textContent = '';
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: 'New Estimate Request from ' + fname + ' ' + lname,
-          from_name: 'Scalda Investments LLC',
-          name: fname + ' ' + lname,
-          email: email,
-          phone: phone || '(not provided)',
-          service: service || '(not selected)',
-          message: details,
-          botcheck: ''
-        })
-      });
-      const data = await res.json();
-      if (data.success) {
-        statusEl.className = 'form-status success';
-        statusEl.textContent = currentLang === 'es'
-          ? '✓ ¡Solicitud enviada! Le contactaremos pronto.'
-          : "✓ Request sent! We'll be in touch soon.";
-        ['f-fname','f-lname','f-email','f-phone','f-details'].forEach(id => { document.getElementById(id).value = ''; });
-        document.getElementById('f-service').selectedIndex = 0;
-      } else {
-        throw new Error(data.message || 'Submission failed');
+      if (!fname || !lname || !email || !details) {
+        statusEl.style.display = 'block';
+        statusEl.style.background = '#fff0f0';
+        statusEl.style.color = '#c0392b';
+        statusEl.style.border = '1px solid #f5c6c6';
+        statusEl.textContent = isSpanish
+          ? '⚠ Por favor complete los campos obligatorios (nombre, apellido, correo y mensaje).'
+          : '⚠ Please fill in the required fields (first name, last name, email, and message).';
+        return;
       }
-    } catch (err) {
-      console.error(err);
-      statusEl.className = 'form-status error';
-      statusEl.textContent = currentLang === 'es'
-        ? '⚠ Error al enviar. Por favor llámenos al +1 574-386-8817.'
-        : '⚠ Send failed. Please call us at +1 574-386-8817.';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = currentLang === 'es' ? 'Enviar Solicitud →' : 'Submit Request →';
-    }
-  });
+
+      btn.disabled = true;
+      btn.textContent = isSpanish ? 'Enviando...' : 'Sending...';
+      statusEl.style.display = 'none';
+      statusEl.textContent = '';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: 'New Interest Form from ' + fname + ' ' + lname,
+            from_name: 'Scalda Investments LLC Website',
+            name: fname + ' ' + lname,
+            email: email,
+            service: service || '(not selected)',
+            message: details,
+            botcheck: ''
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          statusEl.style.display = 'block';
+          statusEl.style.background = '#f0fff4';
+          statusEl.style.color = '#27ae60';
+          statusEl.style.border = '1px solid #b2dfdb';
+          statusEl.textContent = isSpanish
+            ? '✓ ¡Mensaje enviado! Le contactaremos pronto.'
+            : '✓ Message sent! We\'ll be in touch soon.';
+          ['f-fname','f-lname','f-email','f-details'].forEach(id => {
+            document.getElementById(id).value = '';
+          });
+          document.getElementById('f-service').selectedIndex = 0;
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.style.display = 'block';
+        statusEl.style.background = '#fff0f0';
+        statusEl.style.color = '#c0392b';
+        statusEl.style.border = '1px solid #f5c6c6';
+        statusEl.textContent = isSpanish
+          ? '⚠ Error al enviar. Por favor llámenos al +1 574-386-8817.'
+          : '⚠ Send failed. Please call us at +1 574-386-8817.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = isSpanish ? 'Enviar Mensaje' : 'Send Message';
+      }
+    });
   </script>
 
 </body>
