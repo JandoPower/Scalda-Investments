@@ -10,8 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy: #1a2744;
-      --navy-light: #243055;
+      --navy: #1b3e7a;
+      --navy-light: #2050a0;
       --orange: #c9560a;
       --orange-light: #e06720;
       --cream: #f5f0e8;
@@ -152,7 +152,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(135deg, rgba(26,39,68,0.97) 0%, rgba(26,39,68,0.88) 50%, rgba(26,39,68,0.75) 100%),
+        linear-gradient(135deg, rgba(27,62,122,0.92) 0%, rgba(27,62,122,0.78) 50%, rgba(27,62,122,0.60) 100%),
         url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1400&auto=format&fit=crop') center/cover no-repeat;
     }
     .hero-bg::after {
@@ -170,11 +170,12 @@
       pointer-events: none;
     }
     .hero-logo-watermark img {
-      width: 460px;
-      max-width: 35vw;
+      width: 500px;
+      max-width: 38vw;
       display: block;
       mix-blend-mode: screen;
-      opacity: 0.28;
+      opacity: 0.55;
+      filter: brightness(1.6) contrast(1.1);
     }
     .hero-content {
       position: relative;
@@ -255,7 +256,7 @@
     .btn-secondary:hover { border-color: #fff; color: #fff; }
 
     /* ── STATS BAR ── */
-    .stats-bar { background: #13203a; padding: 32px 40px; }
+    .stats-bar { background: #0d2a5e; padding: 32px 40px; }
     .stats-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -654,7 +655,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #0f1829;
+      background: #0b2350;
       color: rgba(255,255,255,0.6);
       padding: 60px 40px 32px;
     }
@@ -770,6 +771,9 @@
       </symbol>
       <symbol id="icon-parking" viewBox="0 0 24 24">
         <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+      </symbol>
+      <symbol id="icon-sqft" viewBox="0 0 24 24">
+        <path d="M3 5v4h2V5h4V3H5c-1.1 0-2 .9-2 2zm2 10H3v4c0 1.1.9 2 2 2h4v-2H5v-4zm14 4h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4zm0-16h-4v2h4v4h2V5c0-1.1-.9-2-2-2z"/>
       </symbol>
     </defs>
   </svg>
@@ -946,6 +950,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>660 sqft</span></div>
               </div>
             </div>
           </div>
@@ -962,6 +967,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>600 sqft</span></div>
               </div>
             </div>
           </div>
@@ -978,6 +984,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>3 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>9</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>5</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,712 sqft</span></div>
               </div>
             </div>
           </div>
@@ -994,6 +1001,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>5</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,066 sqft</span></div>
               </div>
             </div>
           </div>
@@ -1010,6 +1018,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,230 sqft</span></div>
               </div>
             </div>
           </div>
@@ -1026,6 +1035,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>672 sqft</span></div>
               </div>
             </div>
           </div>
@@ -1042,6 +1052,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>666/side · 1,212 total</span></div>
               </div>
             </div>
           </div>
@@ -1058,6 +1069,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>1 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>2</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>588/side · 1,176 total</span></div>
               </div>
             </div>
           </div>
@@ -1074,6 +1086,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>5</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,056/side · 2,112 total</span></div>
               </div>
             </div>
           </div>
@@ -1090,6 +1103,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>8</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,900 sqft</span></div>
               </div>
             </div>
           </div>
@@ -1106,6 +1120,7 @@
                 <div class="prop-stat"><svg><use href="#icon-bath"/></svg><span>2 BA</span></div>
                 <div class="prop-stat"><svg><use href="#icon-people"/></svg><span>8</span></div>
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
+                <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,100 sqft</span></div>
               </div>
             </div>
           </div>
