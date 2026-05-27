@@ -423,6 +423,7 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       transition: transform 0.2s, box-shadow 0.2s;
       border: 1px solid var(--border);
+      position: relative;
     }
     .prop-card:hover {
       transform: translateY(-4px);
@@ -481,6 +482,205 @@
       height: 15px;
       fill: var(--orange);
       flex-shrink: 0;
+    }
+
+    /* ── SHARE BUTTON on card ── */
+    .prop-share-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.92);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s, transform 0.15s;
+      z-index: 2;
+    }
+    .prop-share-btn:hover {
+      background: var(--orange);
+      transform: scale(1.1);
+    }
+    .prop-share-btn:hover svg { fill: #fff; }
+    .prop-share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--navy);
+      flex-shrink: 0;
+      transition: fill 0.2s;
+    }
+
+    /* ── SHARE MODAL OVERLAY ── */
+    .share-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .share-overlay.open { display: flex; }
+
+    .share-modal {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px 28px 28px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      position: relative;
+    }
+    .share-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--cream);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-mid);
+      transition: background 0.2s;
+    }
+    .share-close:hover { background: var(--border); }
+
+    .share-modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 4px;
+      padding-right: 36px;
+    }
+    .share-prop-subtitle {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 22px;
+    }
+
+    .share-copy-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .share-link-box {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 12px;
+      color: var(--text-mid);
+      background: var(--cream);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: 'Lato', sans-serif;
+    }
+    .share-copy-btn {
+      padding: 10px 16px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Lato', sans-serif;
+      transition: background 0.2s;
+    }
+    .share-copy-btn:hover { background: var(--navy-light); }
+    .share-copy-btn.copied { background: #2e7d32; }
+
+    .share-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .share-divider::before,
+    .share-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .share-divider span {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .share-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .share-opt-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      font-family: 'Lato', sans-serif;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      text-align: left;
+    }
+    .share-opt-btn:hover {
+      border-color: var(--orange);
+      background: #fff8f4;
+      transform: translateY(-1px);
+    }
+    .share-opt-btn .opt-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .share-opt-btn .opt-icon svg { width: 20px; height: 20px; fill: #fff; }
+    .opt-icon-wa  { background: #25d366; }
+    .opt-icon-email { background: var(--navy); }
+    .opt-icon-sms { background: #5856d6; }
+    .opt-icon-fb  { background: #1877f2; }
+
+    .share-opt-btn .opt-label {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .share-opt-btn .opt-label span:first-child {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .share-opt-btn .opt-label span:last-child {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
     }
 
     /* ── PROP SUBTABS ── */
@@ -752,6 +952,7 @@
       .form-row { grid-template-columns: 1fr; }
       section { padding: 60px 20px; }
       .topbar { padding: 8px 20px; }
+      .share-options { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -775,8 +976,69 @@
       <symbol id="icon-sqft" viewBox="0 0 24 24">
         <path d="M3 5v4h2V5h4V3H5c-1.1 0-2 .9-2 2zm2 10H3v4c0 1.1.9 2 2 2h4v-2H5v-4zm14 4h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4zm0-16h-4v2h4v4h2V5c0-1.1-.9-2-2-2z"/>
       </symbol>
+      <symbol id="icon-share" viewBox="0 0 24 24">
+        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z"/>
+      </symbol>
     </defs>
   </svg>
+
+  <!-- ── SHARE MODAL ── -->
+  <div class="share-overlay" id="shareOverlay" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+    <div class="share-modal">
+      <button class="share-close" onclick="closeShareModal()" aria-label="Close share dialog">✕</button>
+      <h3 id="shareModalTitle">Share this Property</h3>
+      <div class="share-prop-subtitle" id="shareModalSubtitle"></div>
+
+      <div class="share-copy-row">
+        <div class="share-link-box" id="shareLinkBox"></div>
+        <button class="share-copy-btn" id="shareCopyBtn" onclick="copyShareLink()">Copy</button>
+      </div>
+
+      <div class="share-divider"><span>Or share via</span></div>
+
+      <div class="share-options">
+        <button class="share-opt-btn" onclick="shareViaWhatsApp()">
+          <div class="opt-icon opt-icon-wa">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="opt-label">
+            <span>WhatsApp</span>
+            <span>Send a message</span>
+          </div>
+        </button>
+
+        <button class="share-opt-btn" onclick="shareViaEmail()">
+          <div class="opt-icon opt-icon-email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div class="opt-label">
+            <span>Email</span>
+            <span>Send via email</span>
+          </div>
+        </button>
+
+        <button class="share-opt-btn" onclick="shareViaSMS()">
+          <div class="opt-icon opt-icon-sms">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+          </div>
+          <div class="opt-label">
+            <span>SMS / Text</span>
+            <span>Send a text</span>
+          </div>
+        </button>
+
+        <button class="share-opt-btn" onclick="shareViaFacebook()">
+          <div class="opt-icon opt-icon-fb">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div class="opt-label">
+            <span>Facebook</span>
+            <span>Post or message</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ── TOP BAR ── -->
   <div class="topbar">
@@ -938,7 +1200,8 @@
       <div class="prop-panel active" id="panel-indy">
         <div class="prop-grid">
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="755 Lynn St" data-city="Indianapolis, IN 46222" data-details="2 BD · 1 BA · 660 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="755Lynn.jpeg" alt="755 Lynn St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -955,7 +1218,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="931 Lynn St" data-city="Indianapolis, IN 46222" data-details="2 BD · 1 BA · 600 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="931Lynn.jpeg" alt="931 Lynn St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -972,7 +1236,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="3664 Yellow Poplar Ct" data-city="Indianapolis, IN 46222" data-details="5 BD · 3 BA · 1,712 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="3664Yellow.jpeg" alt="3664 Yellow Poplar Ct"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -989,7 +1254,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="3502 White Cedar Ct" data-city="Indianapolis, IN 46222" data-details="3 BD · 2 BA · 1,066 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="3502WhiteCedar.jpeg" alt="3502 White Cedar Ct"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1006,7 +1272,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="1142 W 28th St" data-city="Indianapolis, IN 46208" data-details="2 BD · 1 BA · 1,230 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="1142W_28th.jpeg" alt="1142 W 28th St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1023,7 +1290,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="15 S Gray St" data-city="Indianapolis, IN 46201" data-details="2 BD · 1 BA · 672 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="15S_Gray.jpeg" alt="15 S Gray St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1040,7 +1308,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="1470–1472 Lee St" data-city="Indianapolis, IN 46221" data-details="2 BD · 1 BA · Duplex · 1,212 sqft total">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="1470-1472Lee.jpeg" alt="1470-1472 Lee St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Duplex</span>
@@ -1057,7 +1326,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="1302–1304 Medford Ave" data-city="Indianapolis, IN 46222" data-details="2 BD · 1 BA · Duplex · 1,176 sqft total">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="1302-1304Medford.jpeg" alt="1302-1304 Medford Ave"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Duplex</span>
@@ -1074,7 +1344,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="1923–1925 W Ohio St" data-city="Indianapolis, IN 46222" data-details="3 BD · 2 BA · Duplex · 2,112 sqft total">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="1923-1925W_Ohio.jpeg" alt="1923-1925 W Ohio St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Duplex</span>
@@ -1091,7 +1362,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="3647 Hillside Ave" data-city="Indianapolis, IN 46218" data-details="5 BD · 2 BA · 1,900 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="3647Hillside.jpeg" alt="3647 Hillside Ave"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1108,7 +1380,8 @@
             </div>
           </div>
 
-          <div class="prop-card">
+          <div class="prop-card" data-addr="4050 W Vermont St" data-city="Indianapolis, IN 46222" data-details="4 BD · 2 BA · 1,100 sqft">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="4050W_Vermont.jpeg" alt="4050 W Vermont St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1135,7 +1408,8 @@
         </div>
         <div class="prop-subpanel active" id="subpanel-luna-mare">
           <div class="prop-grid">
-            <div class="prop-card">
+            <div class="prop-card" data-addr="Luna Mare" data-city="Omoa, Honduras" data-details="Scalda Investments property — Omoa, Honduras">
+              <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
               <img class="prop-img" src="Omoa_big.jpeg" alt="Luna Mare — Ground View"/>
               <div class="prop-info">
                 <span class="prop-tag overseas" data-lang="en">Omoa · Honduras</span>
@@ -1145,7 +1419,8 @@
                 <div class="prop-city">Omoa, Honduras</div>
               </div>
             </div>
-            <div class="prop-card">
+            <div class="prop-card" data-addr="Luna Mare — Aerial View" data-city="Omoa, Honduras" data-details="Scalda Investments property — Omoa, Honduras">
+              <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share this property"><svg><use href="#icon-share"/></svg></button>
               <img class="prop-img" src="Omoa_little.jpeg" alt="Luna Mare — Aerial View"/>
               <div class="prop-info">
                 <span class="prop-tag overseas" data-lang="en">Omoa · Honduras</span>
@@ -1280,7 +1555,7 @@
             </div>
           </div>
           <div style="margin-top: 16px; padding: 20px; background: var(--cream); border-radius: 6px; border-left: 4px solid var(--orange);">
-            <p style="font-size:14px; color: var(--text-mid); line-height: 1.7;" data-lang="en">Whether you're looking to invest, partner, or simply learn more about what we do — reach out. We respond promptly and always in your preferred language.</p>
+            <p style="font-size:14px; color: var(--text-mid); line-height: 1.7;" data-lang="en">Whether you are looking to invest, partner, or simply learn more about what we do — reach out. We respond promptly and always in your preferred language.</p>
             <p style="font-size:14px; color: var(--text-mid); line-height: 1.7;" data-lang="es">Ya sea que quieras invertir, asociarte o simplemente aprender más sobre lo que hacemos, contáctanos. Respondemos rápidamente y siempre en tu idioma preferido.</p>
           </div>
         </div>
@@ -1306,7 +1581,7 @@
             <input type="email" placeholder="john@email.com"/>
           </div>
           <div class="form-group">
-            <label data-lang="en">I'm interested in...</label>
+            <label data-lang="en">I am interested in...</label>
             <label data-lang="es">Me interesa...</label>
             <select>
               <option>Investing / Partnership</option>
@@ -1326,11 +1601,9 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-inner">
       <div class="footer-grid">
-
         <div class="footer-brand">
           <a href="#top" class="footer-logo-link" title="Back to top">
             <img src="Logo_Scalda_Investments_LLC.png" alt="Scalda Investments LLC"/>
@@ -1346,7 +1619,6 @@
             </a>
           </div>
         </div>
-
         <div class="footer-col">
           <h4 data-lang="en">Navigation</h4>
           <h4 data-lang="es">Navegación</h4>
@@ -1359,7 +1631,6 @@
           <a href="#contact" data-lang="en">Contact</a>
           <a href="#contact" data-lang="es">Contacto</a>
         </div>
-
         <div class="footer-col">
           <h4 data-lang="en">Markets</h4>
           <h4 data-lang="es">Mercados</h4>
@@ -1368,7 +1639,6 @@
           <a href="#contact" data-lang="en">Partner With Us</a>
           <a href="#contact" data-lang="es">Sé Nuestro Socio</a>
         </div>
-
       </div>
       <div class="footer-bottom">
         <p>© 2025 Scalda Investments LLC. <span data-lang="en">All rights reserved.</span><span data-lang="es">Todos los derechos reservados.</span></p>
@@ -1377,105 +1647,119 @@
   </footer>
 
   <script>
-    let isSpanish = false;
+    var _shareAddr = '', _shareCity = '', _shareDetails = '';
 
+    function buildShareText() {
+      var t = 'Check out this property from Scalda Investments LLC!\n\n';
+      t += _shareAddr + '\n' + _shareCity;
+      if (_shareDetails) t += '\n' + _shareDetails;
+      t += '\n\nMore info: https://www.facebook.com/p/Scalda-Investments-LLC-100092336262180/';
+      return t;
+    }
+
+    function buildShareURL() {
+      return 'https://www.scaldainvestments.com/#properties';
+    }
+
+    function openShareModal(btn) {
+      var card = btn.closest('.prop-card');
+      _shareAddr    = card.getAttribute('data-addr') || '';
+      _shareCity    = card.getAttribute('data-city') || '';
+      _shareDetails = card.getAttribute('data-details') || '';
+      document.getElementById('shareModalSubtitle').textContent = _shareAddr + ' · ' + _shareCity;
+      document.getElementById('shareLinkBox').textContent = buildShareURL();
+      var copyBtn = document.getElementById('shareCopyBtn');
+      copyBtn.textContent = 'Copy';
+      copyBtn.classList.remove('copied');
+      document.getElementById('shareOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeShareModal() {
+      document.getElementById('shareOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('shareOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeShareModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeShareModal();
+    });
+
+    function copyShareLink() {
+      var url = buildShareURL();
+      var btn = document.getElementById('shareCopyBtn');
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function() {
+          btn.textContent = 'Copied!'; btn.classList.add('copied');
+          setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      } else {
+        var el = document.createElement('textarea'); el.value = url;
+        document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+        btn.textContent = 'Copied!'; btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      }
+    }
+
+    function shareViaWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(buildShareText()), '_blank'); }
+    function shareViaEmail() {
+      window.location.href = 'mailto:?subject=' + encodeURIComponent('Property from Scalda Investments: ' + _shareAddr) + '&body=' + encodeURIComponent(buildShareText());
+    }
+    function shareViaSMS() {
+      var sep = /iPhone|iPad|iPod/.test(navigator.userAgent) ? '&' : '?';
+      window.location.href = 'sms:' + sep + 'body=' + encodeURIComponent(buildShareText());
+    }
+    function shareViaFacebook() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(buildShareURL()), '_blank', 'width=600,height=400'); }
+
+    var isSpanish = false;
     function toggleLang() {
       isSpanish = !isSpanish;
       document.body.classList.toggle('lang-es', isSpanish);
       document.getElementById('langBtn').textContent = isSpanish ? 'EN' : 'ES';
       document.documentElement.lang = isSpanish ? 'es' : 'en';
-
-      document.querySelectorAll('nav > a').forEach(a => {
-        const lang = a.getAttribute('data-lang');
-        if (lang) a.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'block' : 'none';
-      });
-
-      document.querySelectorAll('.prop-tab').forEach(btn => {
-        const lang = btn.getAttribute('data-lang');
-        if (lang) btn.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'inline-block' : 'none';
-      });
-
-      document.querySelectorAll('.footer-col a[data-lang]').forEach(a => {
-        const lang = a.getAttribute('data-lang');
-        a.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'block' : 'none';
-      });
-
-      document.querySelectorAll('.footer-col h4[data-lang]').forEach(h => {
-        const lang = h.getAttribute('data-lang');
-        h.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'block' : 'none';
-      });
-
-      document.querySelectorAll('.hero-btns a[data-lang]').forEach(a => {
-        const lang = a.getAttribute('data-lang');
-        a.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'inline-block' : 'none';
-      });
-
-      document.querySelectorAll('.btn-form[data-lang]').forEach(b => {
-        const lang = b.getAttribute('data-lang');
-        b.style.display = (isSpanish ? lang === 'es' : lang === 'en') ? 'block' : 'none';
-      });
-
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        if (
-          el.classList.contains('prop-tab') ||
-          (el.tagName === 'A' && el.closest('nav')) ||
-          (el.tagName === 'A' && el.closest('.hero-btns')) ||
-          (el.tagName === 'BUTTON' && el.classList.contains('btn-form')) ||
-          (el.tagName === 'A' && el.closest('.footer-col')) ||
-          (el.tagName === 'H4' && el.closest('.footer-col'))
-        ) return;
-
-        const lang = el.getAttribute('data-lang');
-        if (!lang) return;
-        const show = isSpanish ? lang === 'es' : lang === 'en';
-        const isInline =
-          ['SPAN', 'EM', 'A'].includes(el.tagName) ||
-          el.classList.contains('prop-tag') ||
-          el.classList.contains('hero-eyebrow') ||
-          el.classList.contains('section-eyebrow') ||
-          el.classList.contains('btn-primary') ||
-          el.classList.contains('btn-secondary') ||
-          el.classList.contains('stat-label');
-
-        el.style.display = show ? (isInline ? 'inline-flex' : 'block') : 'none';
-
-        if (show && !['hero-eyebrow', 'section-eyebrow'].some(c => el.classList.contains(c))) {
-          if (
-            el.classList.contains('prop-tag') ||
-            el.classList.contains('btn-primary') ||
-            el.classList.contains('btn-secondary')
-          ) {
-            el.style.display = show ? 'inline-block' : 'none';
-          }
+      document.querySelectorAll('nav > a').forEach(function(a) { var l=a.getAttribute('data-lang'); if(l) a.style.display=(isSpanish?l==='es':l==='en')?'block':'none'; });
+      document.querySelectorAll('.prop-tab').forEach(function(b) { var l=b.getAttribute('data-lang'); if(l) b.style.display=(isSpanish?l==='es':l==='en')?'inline-block':'none'; });
+      document.querySelectorAll('.footer-col a[data-lang]').forEach(function(a) { var l=a.getAttribute('data-lang'); a.style.display=(isSpanish?l==='es':l==='en')?'block':'none'; });
+      document.querySelectorAll('.footer-col h4[data-lang]').forEach(function(h) { var l=h.getAttribute('data-lang'); h.style.display=(isSpanish?l==='es':l==='en')?'block':'none'; });
+      document.querySelectorAll('.hero-btns a[data-lang]').forEach(function(a) { var l=a.getAttribute('data-lang'); a.style.display=(isSpanish?l==='es':l==='en')?'inline-block':'none'; });
+      document.querySelectorAll('.btn-form[data-lang]').forEach(function(b) { var l=b.getAttribute('data-lang'); b.style.display=(isSpanish?l==='es':l==='en')?'block':'none'; });
+      document.querySelectorAll('[data-lang]').forEach(function(el) {
+        if(el.classList.contains('prop-tab')||(el.tagName==='A'&&el.closest('nav'))||(el.tagName==='A'&&el.closest('.hero-btns'))||(el.tagName==='BUTTON'&&el.classList.contains('btn-form'))||(el.tagName==='A'&&el.closest('.footer-col'))||(el.tagName==='H4'&&el.closest('.footer-col'))) return;
+        var l=el.getAttribute('data-lang'); if(!l) return;
+        var show=isSpanish?l==='es':l==='en';
+        var isInline=['SPAN','EM','A'].includes(el.tagName)||el.classList.contains('prop-tag')||el.classList.contains('hero-eyebrow')||el.classList.contains('section-eyebrow')||el.classList.contains('btn-primary')||el.classList.contains('btn-secondary')||el.classList.contains('stat-label');
+        el.style.display=show?(isInline?'inline-flex':'block'):'none';
+        if(show&&!['hero-eyebrow','section-eyebrow'].some(function(c){return el.classList.contains(c);})){
+          if(el.classList.contains('prop-tag')||el.classList.contains('btn-primary')||el.classList.contains('btn-secondary')) el.style.display=show?'inline-block':'none';
         }
       });
     }
 
-    document.querySelectorAll('.prop-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.getAttribute('data-tab');
-        document.querySelectorAll('.prop-tab').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.prop-panel').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll(`.prop-tab[data-tab="${tab}"]`).forEach(b => b.classList.add('active'));
-        document.getElementById(`panel-${tab}`).classList.add('active');
+    document.querySelectorAll('.prop-tab').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var tab=btn.getAttribute('data-tab');
+        document.querySelectorAll('.prop-tab').forEach(function(b){b.classList.remove('active');});
+        document.querySelectorAll('.prop-panel').forEach(function(p){p.classList.remove('active');});
+        document.querySelectorAll('.prop-tab[data-tab="'+tab+'"]').forEach(function(b){b.classList.add('active');});
+        document.getElementById('panel-'+tab).classList.add('active');
       });
     });
 
-    document.querySelectorAll('.prop-subtab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const subtab = btn.getAttribute('data-subtab');
-        const panel = btn.closest('.prop-panel');
-        panel.querySelectorAll('.prop-subtab').forEach(b => b.classList.remove('active'));
-        panel.querySelectorAll('.prop-subpanel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.prop-subtab').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var subtab=btn.getAttribute('data-subtab');
+        var panel=btn.closest('.prop-panel');
+        panel.querySelectorAll('.prop-subtab').forEach(function(b){b.classList.remove('active');});
+        panel.querySelectorAll('.prop-subpanel').forEach(function(p){p.classList.remove('active');});
         btn.classList.add('active');
-        document.getElementById(`subpanel-${subtab}`).classList.add('active');
+        document.getElementById('subpanel-'+subtab).classList.add('active');
       });
     });
 
-    document.querySelectorAll('[data-lang="es"]').forEach(el => {
-      el.style.display = 'none';
-    });
-  </script>
-
+    document.querySelectorAll('[data-lang="es"]').forEach(function(el){ el.style.display='none'; });
+  <\/script>
 </body>
 </html>
