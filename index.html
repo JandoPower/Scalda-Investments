@@ -1124,8 +1124,8 @@
             </div>
           </div>
 
-          <div class="prop-card" data-addr="3664 Yellow Poplar Ct" data-city="Indianapolis, IN 46222" data-details="5 BD · 3 BA · 1,712 sqft">
-            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
+          <div class="prop-card" data-addr="3664 Yellow Poplar Ct" data-city="Indianapolis, IN 46222" data-details="5 BD · 3 BA · 1,712 sqft" data-detail="properties/3664-yellow-poplar-ct/" style="cursor:pointer" onclick="if(!event.target.closest('.prop-share-btn'))window.location.href='properties/3664-yellow-poplar-ct/'">
+            <button class="prop-share-btn" onclick="event.stopPropagation();openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="properties/3664-yellow-poplar-ct/cover.jpeg" alt="3664 Yellow Poplar Ct"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1294,7 +1294,6 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">730 N Arnold St</div>
               <div class="prop-city">Indianapolis, IN</div>
-              <!-- TODO: fill in stats (BD/BA/sqft) once known -->
             </div>
           </div>
 
@@ -1306,7 +1305,6 @@
               <span class="prop-tag" data-lang="es">Unifamiliar</span>
               <div class="prop-addr">2526 Adams</div>
               <div class="prop-city">Indianapolis, IN</div>
-              <!-- TODO: fill in stats (BD/BA/sqft) once known; add detail page when photos arrive -->
             </div>
           </div>
 
