@@ -1142,8 +1142,8 @@
             </div>
           </div>
 
-          <div class="prop-card" data-addr="3502 White Cedar Ct" data-city="Indianapolis, IN 46222" data-details="3 BD · 2 BA · 1,066 sqft">
-            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
+          <div class="prop-card" data-addr="3502 White Cedar Ct" data-city="Indianapolis, IN 46222" data-details="3 BD · 2 BA · 1,066 sqft" data-detail="properties/3502-white-cedar-ct/" style="cursor:pointer" onclick="if(!event.target.closest('.prop-share-btn'))window.location.href='properties/3502-white-cedar-ct/'">
+            <button class="prop-share-btn" onclick="event.stopPropagation();openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="properties/3502-white-cedar-ct/cover.jpeg" alt="3502 White Cedar Ct"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Single Family</span>
@@ -1196,8 +1196,8 @@
             </div>
           </div>
 
-          <div class="prop-card" data-addr="1470-1472 Lee St" data-city="Indianapolis, IN 46221" data-details="2 BD · 1 BA · Duplex · 1,212 sqft total">
-            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
+          <div class="prop-card" data-addr="1470-1472 Lee St" data-city="Indianapolis, IN 46221" data-details="2 BD · 1 BA · Duplex · 1,212 sqft total" data-detail="properties/1470-1472-lee-st/" style="cursor:pointer" onclick="if(!event.target.closest('.prop-share-btn'))window.location.href='properties/1470-1472-lee-st/'">
+            <button class="prop-share-btn" onclick="event.stopPropagation();openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
             <img class="prop-img" src="properties/1470-1472-lee-st/cover.jpeg" alt="1470-1472 Lee St"/>
             <div class="prop-info">
               <span class="prop-tag" data-lang="en">Duplex</span>
@@ -1283,6 +1283,30 @@
                 <div class="prop-stat"><svg><use href="#icon-parking"/></svg><span>4</span></div>
                 <div class="prop-stat"><svg><use href="#icon-sqft"/></svg><span>1,100 sqft</span></div>
               </div>
+            </div>
+          </div>
+
+          <div class="prop-card" data-addr="730 N Arnold St" data-city="Indianapolis, IN" data-details="Details available on request" data-detail="properties/730-n-arnold/" style="cursor:pointer" onclick="if(!event.target.closest('.prop-share-btn'))window.location.href='properties/730-n-arnold/'">
+            <button class="prop-share-btn" onclick="event.stopPropagation();openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
+            <img class="prop-img" src="properties/730-n-arnold/cover.jpeg" alt="730 N Arnold St"/>
+            <div class="prop-info">
+              <span class="prop-tag" data-lang="en">Single Family</span>
+              <span class="prop-tag" data-lang="es">Unifamiliar</span>
+              <div class="prop-addr">730 N Arnold St</div>
+              <div class="prop-city">Indianapolis, IN</div>
+              <!-- TODO: fill in stats (BD/BA/sqft) once known -->
+            </div>
+          </div>
+
+          <div class="prop-card" data-addr="2526 Adams" data-city="Indianapolis, IN" data-details="Details available on request">
+            <button class="prop-share-btn" onclick="openShareModal(this)" aria-label="Share property"><svg><use href="#icon-share"/></svg></button>
+            <img class="prop-img" src="properties/2526-adams/cover.jpeg" alt="2526 Adams"/>
+            <div class="prop-info">
+              <span class="prop-tag" data-lang="en">Single Family</span>
+              <span class="prop-tag" data-lang="es">Unifamiliar</span>
+              <div class="prop-addr">2526 Adams</div>
+              <div class="prop-city">Indianapolis, IN</div>
+              <!-- TODO: fill in stats (BD/BA/sqft) once known; add detail page when photos arrive -->
             </div>
           </div>
 
